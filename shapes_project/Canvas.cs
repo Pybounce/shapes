@@ -1,13 +1,17 @@
 public class Canvas {
 
-    private List<Shape> _shapes;
+    private IEnumerable<Shape> _shapes;
 
     public Canvas() {
         _shapes = new List<Shape>();
     }
 
-    public void AddShape(Shape shape) {
-        _shapes.Add(shape);
+    public Canvas(params Shape[] shapes) {
+        _shapes = shapes;
+    }
+
+    public void AddShapes(params Shape[] shapes) {
+        _shapes = _shapes.Concat(shapes);
     }
 
     public void Draw() {
