@@ -1,4 +1,4 @@
-public class Rect: Shape {
+public class Rect: Widget {
 
     private uint _width;
     private uint _height;

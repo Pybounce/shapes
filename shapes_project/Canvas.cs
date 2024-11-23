@@ -1,22 +1,22 @@
 public class Canvas {
 
-    private IEnumerable<Shape> _shapes;
+    private IEnumerable<Widget> _widgets;
 
     public Canvas() {
-        _shapes = new List<Shape>();
+        _widgets = new List<Widget>();
     }
 
-    public Canvas(params Shape[] shapes) {
-        _shapes = shapes;
+    public Canvas(params Widget[] widgets) {
+        _widgets = widgets;
     }
 
-    public void AddShapes(params Shape[] shapes) {
-        _shapes = _shapes.Concat(shapes);
+    public void AddWidgets(params Widget[] widgets) {
+        _widgets = _widgets.Concat(widgets);
     }
 
     public void Draw() {
-        foreach (var shape in _shapes) {
-            shape.Draw();
+        foreach (var widget in _widgets) {
+            widget.Draw();
         }
     }
 }

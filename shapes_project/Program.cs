@@ -6,7 +6,7 @@ var someShape = new Rect(10, 10, new Position(1, 2));
 var someShape2 = new Rect(222, 1243, new Position(122, 2));
 var canvas2 = new Canvas(someShape);
 
-canvas.AddShapes(someShape);
-canvas.AddShapes(someShape2);
+canvas.AddWidgets(someShape);
+canvas.AddWidgets(someShape2);
 
 canvas2.Draw();

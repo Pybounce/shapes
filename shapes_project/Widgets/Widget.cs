@@ -1,7 +1,7 @@
 
-public abstract class Shape {
+public abstract class Widget {
     protected Position _position;
-    public Shape(Position pos) {
+    public Widget(Position pos) {
         _position = pos;
     }
 
