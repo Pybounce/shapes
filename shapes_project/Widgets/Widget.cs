@@ -1,8 +1,9 @@
 
 public abstract class Widget {
-    protected Position _position;
+    public Position Position { get; protected set; }
+    
     public Widget(Position pos) {
-        _position = pos;
+        Position = pos;
     }
 
     public abstract void DrawWith(IWidgetRenderer renderer);

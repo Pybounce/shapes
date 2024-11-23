@@ -1,9 +1,9 @@
 public class Square: Widget {
 
-    private uint _size;
+    public uint Size { get; protected set; }
 
     public Square(uint size, Position pos) : base(pos) {
-        _size = size;
+        Size = size;
     }
 
     public override void DrawWith(IWidgetRenderer renderer)
