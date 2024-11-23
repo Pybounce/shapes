@@ -138,4 +138,27 @@ public class SquareTests
         _consoleOut.Flush();
         Assert.That(_consoleOut.ToString().Trim() == expectedOutput);
     }
+
+    [Test]
+    public void DrawTextbox___NullString___ConsidersItEmpty()
+    {
+        //arrange
+        var x = _faker.Random.Int();
+        var y = _faker.Random.Int();
+        var pos = new Position(x, y);
+
+        var width = _faker.Random.UInt();
+        var height = _faker.Random.UInt();
+        String text = null;
+        var widget = new Textbox(width, height, text, pos);
+        
+        var expectedOutput = $"Textbox ({x},{y}) width={width} height={height} Text=\"\"";
+        
+        //act
+        _widgetRenderer.Draw(widget);
+
+        //assert
+        _consoleOut.Flush();
+        Assert.That(_consoleOut.ToString().Trim() == expectedOutput);
+    }
 }
