@@ -5,8 +5,8 @@ public class Circle : Widget
         throw new NotImplementedException();
     }
 
-    public override void Draw()
+    public override void DrawWith(IWidgetRenderer renderer)
     {
-        throw new NotImplementedException();
+        renderer.Draw(this);
     }
 }

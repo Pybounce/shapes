@@ -8,7 +8,8 @@ public class Rect: Widget {
         _height = height;
     }
 
-    public override void Draw() {
-        Console.WriteLine($"Rect {_position.AsDrawnString()} width={_width} height={_height}");
+    public override void DrawWith(IWidgetRenderer renderer)
+    {
+        renderer.Draw(this);
     }
 }

@@ -7,8 +7,4 @@ public struct Position {
         this.x = x;
         this.y = y;
     }
-
-    public string AsDrawnString() {
-        return $"({x}, {y})";
-    }
 }

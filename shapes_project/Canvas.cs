@@ -1,13 +1,16 @@
 public class Canvas {
 
+    private IWidgetRenderer _widgetRenderer;
     private IEnumerable<Widget> _widgets;
 
-    public Canvas() {
+    public Canvas(IWidgetRenderer widgetRenderer) {
         _widgets = new List<Widget>();
+        _widgetRenderer = widgetRenderer;
     }
 
-    public Canvas(params Widget[] widgets) {
+    public Canvas(IWidgetRenderer widgetRenderer, params Widget[] widgets) {
         _widgets = widgets;
+        _widgetRenderer = widgetRenderer;
     }
 
     public void AddWidgets(params Widget[] widgets) {
@@ -16,7 +19,7 @@ public class Canvas {
 
     public void Draw() {
         foreach (var widget in _widgets) {
-            widget.Draw();
+            widget.DrawWith(_widgetRenderer);
         }
     }
 }

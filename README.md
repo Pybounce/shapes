@@ -10,3 +10,6 @@ revolutionary shape-tech
   - They will be wrappers and textbox will be made up of a rect and some text
 
 - Abstract shape can handle other things such as rotation down the line
+
+- Have a separate widget drawer so the data and logic for drawing are separate.
+- Also, canvas can be used to spatially index the shapes and only draw visible shapes

@@ -6,7 +6,8 @@ public class Square: Widget {
         _size = size;
     }
 
-    public override void Draw() {
-        Console.WriteLine($"Square {_position.AsDrawnString()} size={_size}");
+    public override void DrawWith(IWidgetRenderer renderer)
+    {
+        renderer.Draw(this);
     }
 }

@@ -5,7 +5,8 @@ public abstract class Widget {
         _position = pos;
     }
 
-    public abstract void Draw();
+    public abstract void DrawWith(IWidgetRenderer renderer);
+
 }
 
 
