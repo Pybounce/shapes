@@ -7,4 +7,11 @@ public struct Position {
         this.x = x;
         this.y = y;
     }
+
+    public static Position operator +(Position lhs, Position rhs) {
+        return new Position(lhs.x + rhs.x, lhs.y + rhs.y);
+    }
+    public static Position operator -(Position lhs, Position rhs) {
+        return new Position(lhs.x - rhs.x, lhs.y - rhs.y);
+    }
 }

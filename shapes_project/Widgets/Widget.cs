@@ -1,6 +1,6 @@
 
 public abstract class Widget {
-    public Position Position { get; protected set; }
+    public Position Position { get; set; }
     
     public Widget(Position pos) {
         Position = pos;
@@ -15,8 +15,9 @@ public class CompoundWidget : Widget
 {
     protected IEnumerable<Widget> Widgets;
 
-    protected CompoundWidget(Position pos, params Widget[] widgets) : base(pos)
+    public CompoundWidget(Position pos, params Widget[] widgets) : base(pos)
     {
+        foreach (var widget in widgets) { widget.Position += pos; }
         Widgets = widgets;
     }
 

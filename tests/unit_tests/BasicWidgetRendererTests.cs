@@ -207,4 +207,52 @@ public class SquareTests
         _consoleOut.Flush();
         Assert.That(_consoleOut.ToString().Trim() == expectedOutput);
     }
+
+    [Test]
+    public void DrawCompound___CircleSquare___OutputsCircleThenSquare()
+    {
+        //arrange
+        var pos = new Position(0, 0);
+
+        var diameter = _faker.Random.UInt();
+        var circleWidget = new Circle(diameter, pos);
+
+        var size = _faker.Random.UInt();
+        var squareWidget = new Square(size, pos);
+
+        var widget = new CompoundWidget(pos, circleWidget, squareWidget);
+        var expectedOutput = $"Circle ({pos.x},{pos.y}) size={diameter}\n" + $"Square ({pos.x},{pos.y}) size={size}";
+        
+        //act
+        _widgetRenderer.Draw(widget);
+
+        //assert
+        _consoleOut.Flush();
+        Assert.That(_consoleOut.ToString().Trim() == expectedOutput);
+    }
+    
+    [Test]
+    public void DrawCompound___RandomPositions___ChildPositionsAlteredByCompoundParent()
+    {
+        //arrange
+        var compoundPos = new Position(_faker.Random.Int(), _faker.Random.Int());
+        var circlePos = new Position(_faker.Random.Int(), _faker.Random.Int());
+        var squarePos = new Position(_faker.Random.Int(), _faker.Random.Int());
+
+        var diameter = _faker.Random.UInt();
+        var circleWidget = new Circle(diameter, circlePos);
+
+        var size = _faker.Random.UInt();
+        var squareWidget = new Square(size, squarePos);
+
+        var widget = new CompoundWidget(compoundPos, circleWidget, squareWidget);
+        var expectedOutput = $"Circle ({circlePos.x + compoundPos.x},{circlePos.y + compoundPos.y}) size={diameter}\n" + $"Square ({squarePos.x + compoundPos.x},{squarePos.y + compoundPos.y}) size={size}";
+        
+        //act
+        _widgetRenderer.Draw(widget);
+
+        //assert
+        _consoleOut.Flush();
+        Assert.That(_consoleOut.ToString().Trim() == expectedOutput);
+    }
 }
