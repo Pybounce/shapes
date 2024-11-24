@@ -26,4 +26,5 @@
 - Potentially create a separate rendering interface for each widget type ie ISquareRenderer etc
   - You'd still have an IWidgetRenderer, but it would itself, contain the renderers for each widget type
   - Allowing users to mix and match different renderers on a per-widget basis
+  - But I don't know how that would play if you were integrating with a graphics API where some render to that and other widgets just consolelog...
 - Slap a method to update the renderer of the canvas at any time, not just in the constructor
