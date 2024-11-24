@@ -2,7 +2,7 @@
 
 
 
-Showcase_2();
+Showcase_3();
 
 
 
@@ -38,5 +38,15 @@ void Showcase_2() {
     var circleSquare = new CompoundWidget(new Position(0, 0), circle, square);
 
     canvas.AddWidgets(circleSquare, circleSquare);
+    canvas.Draw();
+}
+
+void Showcase_3() {
+    var widgetRenderer = new ScreamingWidgetRenderer();
+    var canvas = new Canvas(widgetRenderer, 
+        new Square(10, new Position(2, 2)),
+        new Circle(1, new Position(3, 4))
+    );
+
     canvas.Draw();
 }
