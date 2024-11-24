@@ -1,13 +1,42 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
-
-var widgetRenderer = new BasicWidgetRenderer();
-var canvas = new Canvas(widgetRenderer);
-
-var someShape = new Rect(10, 10, new Position(1, 2));
-var someShape2 = new Rect(222, 1243, new Position(122, 2));
-
-canvas.AddWidgets(someShape);
-canvas.AddWidgets(someShape2);
+﻿
 
 
+
+Showcase_2();
+
+
+
+void Showcase_0() {
+    var widgetRenderer = new BasicWidgetRenderer();
+    var canvas = new Canvas(widgetRenderer);
+
+    var square = new Square(10, new Position(2, 2));
+    var circle = new Circle(1, new Position(3, 4));
+
+    canvas.AddWidgets(square, circle);
+    canvas.Draw();
+}
+
+void Showcase_1() {
+    var widgetRenderer = new BasicWidgetRenderer();
+    var canvas = new Canvas(widgetRenderer, 
+        new Square(10, new Position(2, 2)),
+        new Circle(1, new Position(3, 4))
+    );
+
+    canvas.Draw();
+}
+
+
+
+void Showcase_2() {
+    var widgetRenderer = new BasicWidgetRenderer();
+    var canvas = new Canvas(widgetRenderer);
+
+    var square = new Square(10, new Position(2, 2));
+    var circle = new Circle(1, new Position(3, 4));
+    var circleSquare = new CompoundWidget(new Position(0, 0), circle, square);
+
+    canvas.AddWidgets(circleSquare, circleSquare);
+    canvas.Draw();
+}
