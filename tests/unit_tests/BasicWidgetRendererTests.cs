@@ -47,6 +47,7 @@ public class SquareTests
         _consoleOut.Flush();
         Assert.That(_consoleOut.ToString().Trim() == expectedOutput);
     }
+    
     [Test]
     [Repeat(20)]
     public void DrawRect___RandomRect___CorrectConsoleOutput()
@@ -136,7 +137,12 @@ public class SquareTests
 
         //assert
         _consoleOut.Flush();
+        //var result = _consoleOut.ToString().Trim();
+                //Console.SetOut(_originalConsoleOut);
+        //Console.WriteLine(result);
         Assert.That(_consoleOut.ToString().Trim() == expectedOutput);
+        
+
     }
 
     [Test]

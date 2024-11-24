@@ -11,3 +11,20 @@ public abstract class Widget {
 }
 
 
+public class CompoundWidget : Widget
+{
+    protected IEnumerable<Widget> Widgets;
+
+    protected CompoundWidget(Position pos, params Widget[] widgets) : base(pos)
+    {
+        Widgets = widgets;
+    }
+
+    public override void DrawWith(IWidgetRenderer renderer)
+    {
+        foreach (var widget in Widgets) {
+            widget.DrawWith(renderer);
+        }
+    }
+
+}

@@ -22,9 +22,19 @@ public class BasicWidgetRenderer : IWidgetRenderer
         Console.WriteLine($"Ellipse ({ellipse.Position.x},{ellipse.Position.y}) diameterH = {ellipse.HorizontalD} diameterV = {ellipse.VerticalD}");
     }
 
-    public virtual void Draw(Textbox circle)
+    public virtual void Draw(Textbox textbox)
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"Textbox ({textbox.Position.x},{textbox.Position.y}) width={textbox.Width} height={textbox.Height} Text=\"{textbox.TextContent}\"");
+    }
+
+    public virtual void Draw(Text text)
+    {
+        Console.WriteLine($"Text ({text.Position.x},{text.Position.y}) Content=\"{text.TextContent}\"");
+    }
+
+    public virtual void Draw(CompoundWidget compoundWidget)
+    {
+        compoundWidget.DrawWith(this);
     }
 }
 
