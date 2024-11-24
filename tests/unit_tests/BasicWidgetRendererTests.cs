@@ -137,16 +137,13 @@ public class SquareTests
 
         //assert
         _consoleOut.Flush();
-        //var result = _consoleOut.ToString().Trim();
-                //Console.SetOut(_originalConsoleOut);
-        //Console.WriteLine(result);
         Assert.That(_consoleOut.ToString().Trim() == expectedOutput);
         
 
     }
 
     [Test]
-    public void DrawTextbox___NullString___ConsidersItEmpty()
+    public void DrawTextbox___NullString___ConsidersTextEmpty()
     {
         //arrange
         var x = _faker.Random.Int();
@@ -159,6 +156,49 @@ public class SquareTests
         var widget = new Textbox(width, height, text, pos);
         
         var expectedOutput = $"Textbox ({x},{y}) width={width} height={height} Text=\"\"";
+        
+        //act
+        _widgetRenderer.Draw(widget);
+
+        //assert
+        _consoleOut.Flush();
+        Assert.That(_consoleOut.ToString().Trim() == expectedOutput);
+    }
+
+    [Test]
+    [Repeat(20)]
+    public void DrawText___RandomTextContent___CorrectConsoleOutput()
+    {
+        //arrange
+        var x = _faker.Random.Int();
+        var y = _faker.Random.Int();
+        var pos = new Position(x, y);
+
+        var textContent = _faker.Random.String(0, 100);
+        var widget = new Text(textContent, pos);
+        
+        var expectedOutput = $"Text ({x},{y}) Content=\"{textContent}\"";
+        
+        //act
+        _widgetRenderer.Draw(widget);
+
+        //assert
+        _consoleOut.Flush();
+        Assert.That(_consoleOut.ToString().Trim() == expectedOutput);
+    }
+
+    [Test]
+    public void DrawText___NullTextContent___ConsidersTextEmpty()
+    {
+        //arrange
+        var x = _faker.Random.Int();
+        var y = _faker.Random.Int();
+        var pos = new Position(x, y);
+
+        String textContent = null;
+        var widget = new Text(textContent, pos);
+        
+        var expectedOutput = $"Text ({x},{y}) Content=\"\"";
         
         //act
         _widgetRenderer.Draw(widget);
