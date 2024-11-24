@@ -36,6 +36,16 @@ public class BasicWidgetRenderer : IWidgetRenderer
     {
         compoundWidget.DrawWith(this);
     }
+
+    public virtual void Draw(IEnumerable<Widget> widgets) {
+        Console.WriteLine("-------------------------------------");
+        Console.WriteLine("Requested Drawing");
+        Console.WriteLine("-------------------------------------");
+        foreach (var widget in widgets) {
+            widget.DrawWith(this);
+        }
+        Console.WriteLine("-------------------------------------");
+    }
 }
 
 

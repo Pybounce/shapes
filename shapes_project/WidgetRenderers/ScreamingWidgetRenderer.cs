@@ -34,4 +34,13 @@ public class ScreamingWidgetRenderer : IWidgetRenderer
     {
         compoundWidget.DrawWith(this);
     }
+    public virtual void Draw(IEnumerable<Widget> widgets) {
+        Console.WriteLine("-------------------------------------");
+        Console.WriteLine("REQUESTED DRAWING");
+        Console.WriteLine("-------------------------------------");
+        foreach (var widget in widgets) {
+            widget.DrawWith(this);
+        }
+        Console.WriteLine("-------------------------------------");
+    }
 }

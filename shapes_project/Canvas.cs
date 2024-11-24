@@ -18,8 +18,6 @@ public class Canvas {
     }
 
     public void Draw() {
-        foreach (var widget in _widgets) {
-            widget.DrawWith(_widgetRenderer);
-        }
+        _widgetRenderer.Draw(_widgets);
     }
 }
