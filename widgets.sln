@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shapes_project", "shapes_project\shapes_project.csproj", "{A6860A7B-5927-4727-8679-274358DAD74E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "widgets_project", "widgets_project\widgets_project.csproj", "{A6860A7B-5927-4727-8679-274358DAD74E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0345CE01-9449-4FB7-B9DF-64AB688A8AB7}"
 EndProject

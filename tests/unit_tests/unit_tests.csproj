@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\shapes_project\shapes_project.csproj" />
+    <ProjectReference Include="..\..\widgets_project\widgets_project.csproj" />
   </ItemGroup>
 
 </Project>
