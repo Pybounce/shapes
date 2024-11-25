@@ -9,7 +9,7 @@ public class Canvas {
     }
 
     public Canvas(IWidgetRenderer widgetRenderer, params IWidget[] widgets) {
-        _widgets = widgets.ToList();
+        _widgets = widgets == null ? new List<IWidget>() : widgets.ToList();
         _widgetRenderer = widgetRenderer;
     }
 
