@@ -4,7 +4,7 @@ public struct Rect: IWidget {
     public uint Height { get; set; }
     public Position Position { get; set; }
 
-    public Rect(uint width, uint height, Position pos) {
+    public Rect(uint width = 1, uint height = 1, Position pos = default) {
         WidgetUtils.CheckDimentions(width, height);
         Width = width;
         Height = height;

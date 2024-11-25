@@ -6,7 +6,7 @@ public struct Textbox : IWidget
     public uint Height { get; set; }
     public Position Position { get; set; }
     
-    public Textbox(uint width, uint height, string text, Position pos) {
+    public Textbox(uint width = 1, uint height = 1, string text = "", Position pos = default) {
         WidgetUtils.CheckDimentions(width, height);
         TextContent = text;
         Width = width;

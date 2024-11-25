@@ -2,7 +2,7 @@ using Bogus;
 
 namespace unit_tests;
 
-public class SquareTests
+public class BasicWidgetRendererTests
 {
     private Faker _faker;
     private IWidgetRenderer _widgetRenderer;

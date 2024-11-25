@@ -2,7 +2,7 @@
 using Bogus;
 namespace unit_tests;
 
-public class CircleTests {
+public class EllipseTests {
 
     private Faker _faker;
 
@@ -16,15 +16,16 @@ public class CircleTests {
     [Repeat(50)]
     public void Constructor___DimentionsGreaterThanZero___NoErrors() {
         //arrange
-        var diameter = _faker.Random.UInt(1);
+        var hd = _faker.Random.UInt(1);
+        var vd = _faker.Random.UInt(1);
 
         //act/assert
-        Assert.DoesNotThrow(() => { var widget = new Circle(diameter); });
+        Assert.DoesNotThrow(() => { var widget = new Ellipse(hd, vd); });
     }
 
     [Test]
     public void Constructor___DimentionsZero___WidgetDimentionsError() {
-        Assert.Throws<WidgetDimentionOutOfRangeException>(() => { var widget = new Circle(0); });
+        Assert.Throws<WidgetDimentionOutOfRangeException>(() => { var widget = new Ellipse(0, 0); });
     }
 
 }
