@@ -2,7 +2,20 @@
 
     public static void Main()
     {
-        Showcase_3();
+        Showcase_Main();
+    }
+
+    private static void Showcase_Main() {
+        var renderer = new BasicWidgetRenderer();
+        var canvas = new Canvas(renderer, new IWidget[5] {
+            new Rect(30, 40, new Position(10, 10)),
+            new Square(35, new Position(15, 30)),
+            new Ellipse(300, 200, new Position(100, 150)),
+            new Circle(300, new Position(1, 1)),
+            new Textbox(200, 100, "sample text", new Position(5, 5))
+        });
+
+        canvas.Draw();
     }
 
     private static void Showcase_0() {

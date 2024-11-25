@@ -38,13 +38,13 @@ public class BasicWidgetRenderer : IWidgetRenderer
     }
 
     public virtual void Draw(IEnumerable<IWidget> widgets) {
-        Console.WriteLine("-------------------------------------");
+        Console.WriteLine("----------------------------------------------------------------");
         Console.WriteLine("Requested Drawing");
-        Console.WriteLine("-------------------------------------");
+        Console.WriteLine("----------------------------------------------------------------");
         foreach (var widget in widgets) {
             widget.DrawWith(this);
         }
-        Console.WriteLine("-------------------------------------");
+        Console.WriteLine("----------------------------------------------------------------");
     }
 }
 
