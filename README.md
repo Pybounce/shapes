@@ -29,3 +29,5 @@
   - Allowing users to mix and match different renderers on a per-widget basis
   - But I don't know how that would play if you were integrating with a graphics API where some render to that and other widgets just consolelog...
 - Slap a method to update the renderer of the canvas at any time, not just in the constructor
+- Add a way to remove widgets from a canvas
+  - If order does not matter, can remove any widget with the same values in the struct.
