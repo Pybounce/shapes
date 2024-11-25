@@ -35,7 +35,7 @@ public class SquareTests
         var y = _faker.Random.Int();
         var pos = new Position(x, y);
 
-        var diameter = _faker.Random.UInt();
+        var diameter = _faker.Random.UInt(1);
         var widget = new Circle(diameter, pos);
         
         var expectedOutput = $"Circle ({x},{y}) size={diameter}";
@@ -57,8 +57,8 @@ public class SquareTests
         var y = _faker.Random.Int();
         var pos = new Position(x, y);
 
-        var width = _faker.Random.UInt();
-        var height = _faker.Random.UInt();
+        var width = _faker.Random.UInt(1);
+        var height = _faker.Random.UInt(1);
         var widget = new Rect(width, height, pos);
         
         var expectedOutput = $"Rectangle ({x},{y}) width={width} height={height}";
@@ -80,7 +80,7 @@ public class SquareTests
         var y = _faker.Random.Int();
         var pos = new Position(x, y);
 
-        var size = _faker.Random.UInt();
+        var size = _faker.Random.UInt(1);
         var widget = new Square(size, pos);
 
         var expectedOutput = $"Square ({x},{y}) size={size}";
@@ -102,8 +102,8 @@ public class SquareTests
         var y = _faker.Random.Int();
         var pos = new Position(x, y);
 
-        var diameterH = _faker.Random.UInt();
-        var diameterV = _faker.Random.UInt();
+        var diameterH = _faker.Random.UInt(1);
+        var diameterV = _faker.Random.UInt(1);
         var widget = new Ellipse(diameterH, diameterV, pos);
         
         var expectedOutput = $"Ellipse ({x},{y}) diameterH = {diameterH} diameterV = {diameterV}";
@@ -125,8 +125,8 @@ public class SquareTests
         var y = _faker.Random.Int();
         var pos = new Position(x, y);
 
-        var width = _faker.Random.UInt();
-        var height = _faker.Random.UInt();
+        var width = _faker.Random.UInt(1);
+        var height = _faker.Random.UInt(1);
         var text = _faker.Random.String(0, 100);
         var widget = new Textbox(width, height, text, pos);
         
@@ -150,8 +150,8 @@ public class SquareTests
         var y = _faker.Random.Int();
         var pos = new Position(x, y);
 
-        var width = _faker.Random.UInt();
-        var height = _faker.Random.UInt();
+        var width = _faker.Random.UInt(1);
+        var height = _faker.Random.UInt(1);
         String text = null;
         var widget = new Textbox(width, height, text, pos);
         
@@ -214,10 +214,10 @@ public class SquareTests
         //arrange
         var pos = new Position(0, 0);
 
-        var diameter = _faker.Random.UInt();
+        var diameter = _faker.Random.UInt(1);
         var circleWidget = new Circle(diameter, pos);
 
-        var size = _faker.Random.UInt();
+        var size = _faker.Random.UInt(1);
         var squareWidget = new Square(size, pos);
 
         var widget = new CompoundWidget(pos, circleWidget, squareWidget);
@@ -239,10 +239,10 @@ public class SquareTests
         var circlePos = new Position(_faker.Random.Int(), _faker.Random.Int());
         var squarePos = new Position(_faker.Random.Int(), _faker.Random.Int());
 
-        var diameter = _faker.Random.UInt();
+        var diameter = _faker.Random.UInt(1);
         var circleWidget = new Circle(diameter, circlePos);
 
-        var size = _faker.Random.UInt();
+        var size = _faker.Random.UInt(1);
         var squareWidget = new Square(size, squarePos);
 
         var widget = new CompoundWidget(compoundPos, circleWidget, squareWidget);
