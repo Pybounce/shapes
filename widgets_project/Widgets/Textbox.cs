@@ -7,7 +7,7 @@ public struct Textbox : IWidget
     public Position Position { get; set; }
     
     public Textbox(uint width, uint height, string text, Position pos) {
-        if (width <= 0 || height <= 0) { throw new Exception("Widget dimentions cannot be below 1"); }
+        WidgetUtils.CheckDimentions(width, height);
         TextContent = text;
         Width = width;
         Height = height;

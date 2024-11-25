@@ -4,7 +4,7 @@ public struct Square: IWidget {
     public Position Position { get; set; }
 
     public Square(uint size, Position pos) {
-        if (size <= 0) { throw new Exception("Widget dimentions cannot be below 1"); }
+        WidgetUtils.CheckDimentions(size);
         Size = size;
         Position = pos;
     }

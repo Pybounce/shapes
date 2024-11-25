@@ -8,7 +8,7 @@ public struct Circle : IWidget
     public Position Position { get; set; }
 
     public Circle(uint d, Position pos) {
-        if (d <= 0) { throw new Exception("Widget dimentions cannot be below 1"); }
+        WidgetUtils.CheckDimentions(d);
         Diameter = d;
         Position = pos;
     }

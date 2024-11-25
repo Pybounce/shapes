@@ -6,7 +6,7 @@ public struct Ellipse : IWidget
     public Position Position { get; set; }
 
     public Ellipse(uint hd, uint vd, Position pos) {
-        if (hd <= 0 || vd <= 0) { throw new Exception("Widget dimentions cannot be below 1"); }
+        WidgetUtils.CheckDimentions(hd, vd);
         HorizontalD = hd;
         VerticalD = vd;
         Position = pos;
