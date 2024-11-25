@@ -1,3 +1,20 @@
+## Usage
+
+```cs
+//create renderer
+var renderer = new BasicWidgetRenderer();
+
+//create canvas and assign renderer
+var canvas = new Canvas(renderer);
+
+//create a widget and add to canvas
+var squareWidget = new Square(10, new Position());
+canvas.AddWidgets(squareWidget);
+
+//draw all widgets on canvas
+canvas.Draw();
+```
+
 ## General Architecture
 
 - Canvas:
