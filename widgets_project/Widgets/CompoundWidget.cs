@@ -1,21 +1,17 @@
 
-public class CompoundWidget : Widget
+public struct CompoundWidget : IWidget
 {
-    protected IEnumerable<Widget> Widgets;
-
-    public CompoundWidget(Position pos, params Widget[] widgets) : base(pos)
+    private IEnumerable<IWidget> _widgets;
+    public Position Position { get; set; }
+    public CompoundWidget(Position pos, params IWidget[] widgets)
     {
         foreach (var widget in widgets) { widget.Position += pos; }
-        Widgets = widgets;
+        _widgets = widgets.ToList();
+        Position = pos;
     }
-    public CompoundWidget(CompoundWidget compoundWidget) : base(compoundWidget.Position)
+    public void DrawWith(IWidgetRenderer renderer)
     {
-        Widgets = compoundWidget.Widgets.Select(x => x);
-    }
-
-    public override void DrawWith(IWidgetRenderer renderer)
-    {
-        foreach (var widget in Widgets) {
+        foreach (var widget in _widgets) {
             widget.DrawWith(renderer);
         }
     }

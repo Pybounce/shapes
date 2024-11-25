@@ -1,13 +1,15 @@
 
-public class Text : Widget
+public struct Text : IWidget
 {
-    public string TextContent { get; protected set; }
+    public string TextContent { get; set; }
+    public Position Position { get; set; }
     
-    public Text(string text, Position pos): base(pos) {
+    public Text(string text, Position pos) {
         TextContent = text;
+        Position = pos;
     }
 
-    public override void DrawWith(IWidgetRenderer renderer)
+    public void DrawWith(IWidgetRenderer renderer)
     {
         renderer.Draw(this);
     }

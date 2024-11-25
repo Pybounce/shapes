@@ -1,21 +1,19 @@
 
-public class Textbox : CompoundWidget
+public struct Textbox : IWidget
 {
-    public string TextContent { get; protected set; }
-    public uint Width { get; protected set; }
-    public uint Height { get; protected set; }
+    public string TextContent { get; set; }
+    public uint Width { get; set; }
+    public uint Height { get; set; }
+    public Position Position { get; set; }
     
-    public Textbox(uint width, uint height, string text, Position pos) :
-        base(pos, 
-        new Rect(width, height, pos), 
-        new Text(text, pos)
-        ) {        
+    public Textbox(uint width, uint height, string text, Position pos) {        
         TextContent = text;
         Width = width;
         Height = height;
+        Position = pos;
     }
 
-    public override void DrawWith(IWidgetRenderer renderer)
+    public void DrawWith(IWidgetRenderer renderer)
     {
         renderer.Draw(this);
     }

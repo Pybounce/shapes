@@ -6,5 +6,5 @@ public interface IWidgetRenderer {
     public void Draw(Textbox textbox);
     public void Draw(CompoundWidget compoundWidget);
     public void Draw(Text text);
-    public void Draw(IEnumerable<Widget> widgets);
+    public void Draw(IEnumerable<IWidget> widgets);
 }

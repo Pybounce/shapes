@@ -1,14 +1,16 @@
-public class Rect: Widget {
+public struct Rect: IWidget {
 
-    public uint Width { get; protected set; }
-    public uint Height { get; protected set; }
+    public uint Width { get; set; }
+    public uint Height { get; set; }
+    public Position Position { get; set; }
 
-    public Rect(uint width, uint height, Position pos) : base(pos) {
+    public Rect(uint width, uint height, Position pos) {
         Width = width;
         Height = height;
+        Position = pos;
     }
 
-    public override void DrawWith(IWidgetRenderer renderer)
+    public void DrawWith(IWidgetRenderer renderer)
     {
         renderer.Draw(this);
     }

@@ -1,12 +1,14 @@
-public class Square: Widget {
+public struct Square: IWidget {
 
-    public uint Size { get; protected set; }
+    public uint Size { get; set; }
+    public Position Position { get; set; }
 
-    public Square(uint size, Position pos) : base(pos) {
+    public Square(uint size, Position pos) {
         Size = size;
+        Position = pos;
     }
 
-    public override void DrawWith(IWidgetRenderer renderer)
+    public void DrawWith(IWidgetRenderer renderer)
     {
         renderer.Draw(this);
     }

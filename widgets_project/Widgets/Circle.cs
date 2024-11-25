@@ -1,13 +1,16 @@
 
-public class Circle : Widget
+public struct Circle : IWidget
 {
-    public uint Diameter { get; protected set; }
-    
-    public Circle(uint d, Position pos): base(pos) {
+    public uint Diameter { get; set; }
+
+    public Position Position { get; set; }
+
+    public Circle(uint d, Position pos) {
         Diameter = d;
+        Position = pos;
     }
 
-    public override void DrawWith(IWidgetRenderer renderer)
+    public void DrawWith(IWidgetRenderer renderer)
     {
         renderer.Draw(this);
     }
