@@ -5,8 +5,7 @@ public class AsciiRenderer : IWidgetRenderer
 {
     private int _sizeX, _sizeY;
     private bool _collisionMade;
-    private int _curX;
-    private int _curY;
+    private (int x, int y) _curPos;
 
     public AsciiRenderer(int sizeX, int sizeY) {
         _sizeX = sizeX;
@@ -20,8 +19,8 @@ public class AsciiRenderer : IWidgetRenderer
 
     public void Draw(Circle circle)
     {
-        var xDif = circle.Position.x - _curX;
-        var yDif = circle.Position.y - _curY;
+        var xDif = circle.Position.x - _curPos.x;
+        var yDif = circle.Position.y - _curPos.y;
         var sqrDist = (double)(Math.Pow(xDif, 2) + Math.Pow(yDif, 2));
         if (sqrDist <= Math.Pow(circle.Diameter / 2.0, 2)) {
             _collisionMade = true;
@@ -31,7 +30,13 @@ public class AsciiRenderer : IWidgetRenderer
 
     public void Draw(Rect rect)
     {
-        _collisionMade = false;
+        if (
+            _curPos.x <= rect.Position.x + (rect.Width / 2) &&
+            _curPos.x >= rect.Position.x - (rect.Width / 2) &&
+            _curPos.y <= rect.Position.y + (rect.Height / 2) &&
+            _curPos.y >= rect.Position.y - (rect.Height / 2)) {
+            _collisionMade = true;
+        }
     }
 
     public void Draw(Ellipse ellipse)
@@ -63,8 +68,8 @@ public class AsciiRenderer : IWidgetRenderer
                     continue;
                 }
                 _collisionMade = false;
-                _curX = x;
-                _curY = _sizeY - y;
+                _curPos.x = x;
+                _curPos.y = _sizeY - y;
                 foreach (var widget in widgets) {
                     widget.DrawWith(this);
                     if (_collisionMade) { break; }
