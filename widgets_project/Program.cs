@@ -1,8 +1,8 @@
 ﻿public class MyProgram {
 
-    public static void Main()
+    public static async Task Main()
     {
-        Showcase_Main();
+        await RenderingButFancy();
     }
 
     private static void Showcase_Main() {
@@ -16,6 +16,12 @@
         });
 
         canvas.Draw();
+    }
+
+    private static async Task RenderingButFancy() {
+        var pong = new Pong(3);
+        await pong.Play();
+
     }
 
     private static void Showcase_0() {
