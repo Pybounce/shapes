@@ -63,13 +63,10 @@ public class AsciiRenderer : IWidgetRenderer
     {
         for (int y = 0; y < _sizeY; y++) {
             for (int x = 0; x < _sizeX; x++) {
-                if (y == 0 || y == _sizeY - 1 || x == 0 || x == _sizeX - 1) {
-                    Console.Write("# ");
-                    continue;
-                }
                 _collisionMade = false;
                 _curPos.x = x;
                 _curPos.y = _sizeY - y;
+                DrawBoarder();
                 foreach (var widget in widgets) {
                     widget.DrawWith(this);
                     if (_collisionMade) { break; }
@@ -79,5 +76,16 @@ public class AsciiRenderer : IWidgetRenderer
             }
             Console.Write("\n");
         }
+    }
+
+    private void DrawBoarder() {
+        var horizontal = new Rect((uint)_sizeX, 1, new Position(_sizeX / 2, _sizeY - 1));
+        this.Draw(horizontal);
+        horizontal.Position = new Position(_sizeX / 2, 1);
+        this.Draw(horizontal);
+        var vertical = new Rect(1, (uint)_sizeY, new Position(_sizeX - 1, _sizeY / 2));
+        this.Draw(vertical);
+        vertical.Position = new Position(0, _sizeY / 2);
+        this.Draw(vertical);
     }
 }

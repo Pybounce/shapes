@@ -22,7 +22,7 @@ public class Pong {
     private (int cur, int max) _games;
     public Pong(int gameCount) {
         _gameFinished = false;
-        _size = (80, 80);
+        _size = (Console.WindowWidth / 2, Console.WindowHeight);
         _renderer = new AsciiRenderer(_size.x, _size.y);
         _games = (cur: 0, max: gameCount);
         ResetBall();
@@ -92,11 +92,11 @@ public class Pong {
     }
 
     private void CheckBallWallCollisions() {
-        if (_ball.Position.y <= (_ballDiameter / 2) || _ball.Position.y >= _size.y - (_ballDiameter / 2)) { 
+        if (_ball.Position.y <= (_ballDiameter / 2) || _ball.Position.y >= _size.y - 1 - (_ballDiameter / 2)) { 
             GoalHit();
         }
         if (_ball.Position.x <= (_ballDiameter / 2)) { _ballDirection.x = Math.Abs(_ballDirection.x); }
-        if (_ball.Position.x >= _size.x - (_ballDiameter / 2)) { _ballDirection.x = -Math.Abs(_ballDirection.x); }
+        if (_ball.Position.x >= _size.x - 1 - (_ballDiameter / 2)) { _ballDirection.x = -Math.Abs(_ballDirection.x); }
     }
 
     private void CheckBallPaddleCollision(Rect paddle) {
