@@ -11,28 +11,22 @@ public class Pong {
     private Circle _ball;
     private Rect _paddleTop;
     private Rect _paddleBottom;
-    private (float x, float y) _ballVelocity => (_ballDirection.x * _ballSpeed, _ballDirection.y * _ballSpeed);
+    private (float x, float y) _ballVelocity => (_ballDirection.x * _ballSpeed.cur, _ballDirection.y * _ballSpeed.cur);
     private (float x, float y) _ballDirection;
     private (float x, float y) _ballFloatPos;
     private bool _gameFinished;
-
-    private (int current, int max) _paddleUpdateSpeed;
-    private float _ballSpeed;
+    private (float cur, float max, float start) _ballSpeed;
+    private float _ballAcceleration;
     private int _ballDiameter;
-    private int _ballRadius => _ballDiameter / 2;
-    
-    public Pong() {
+    private float _ballRadius => (float)_ballDiameter / 2;
+    private (int cur, int max) _games;
+    public Pong(int gameCount) {
         _gameFinished = false;
         _size = (80, 80);
         _renderer = new AsciiRenderer(_size.x, _size.y);
-        _ballDiameter = 3;
-        _ball = new Circle((uint)_ballDiameter, new Position(_size.x / 2, _size.y / 2));
-        _ballDirection = (0.5f, -1);
-        _paddleTop = new Rect(11, 3, new Position(_size.x / 4, _size.y - 10));
-        _paddleBottom = new Rect(11, 3, new Position(_size.x / 3, 10));
-        _paddleUpdateSpeed = (0, 1);
-        _ballFloatPos = (_size.x / 2, _size.y / 2);
-        _ballSpeed = 1.2f;
+        _games = (cur: 0, max: gameCount);
+        ResetBall();
+        ResetPaddles();
     }
 
     public async Task Play() {
@@ -56,11 +50,7 @@ public class Pong {
         CheckBallWallCollisions();
         CheckBallPaddleCollision(_paddleBottom);
         CheckBallPaddleCollision(_paddleTop);
-        _paddleUpdateSpeed.current += 1;
-        if (_paddleUpdateSpeed.current >= _paddleUpdateSpeed.max) {
-            _paddleUpdateSpeed.current = 0;
-            UpdatePaddles();
-        }
+        UpdatePaddles();
         Draw();
     }
 
@@ -92,9 +82,19 @@ public class Pong {
         canvas.Draw();
     }
 
+    private void GoalHit() {
+        _games.cur += 1;
+        ResetBall();
+        ResetPaddles();
+        if (_games.cur >= _games.max) {
+            _gameFinished = true;
+        }
+    }
+
     private void CheckBallWallCollisions() {
-        if (_ball.Position.y <= (_ballDiameter / 2)) { _ballDirection.y = Math.Abs(_ballDirection.y); }
-        if (_ball.Position.y >= _size.y - (_ballDiameter / 2)) { _ballDirection.y = -Math.Abs(_ballDirection.y); }
+        if (_ball.Position.y <= (_ballDiameter / 2) || _ball.Position.y >= _size.y - (_ballDiameter / 2)) { 
+            GoalHit();
+        }
         if (_ball.Position.x <= (_ballDiameter / 2)) { _ballDirection.x = Math.Abs(_ballDirection.x); }
         if (_ball.Position.x >= _size.x - (_ballDiameter / 2)) { _ballDirection.x = -Math.Abs(_ballDirection.x); }
     }
@@ -106,18 +106,35 @@ public class Pong {
             _ball.Position.y + _ballRadius <= paddle.Position.y + (paddle.Height / 2))) &&
             ((_ball.Position.x - _ballRadius <= paddle.Position.x + (paddle.Width / 2) &&
             _ball.Position.x - _ballRadius >= paddle.Position.x - (paddle.Width / 2)) ||
-            (_ball.Position.y + _ballRadius >= paddle.Position.x - (paddle.Width / 2) &&
-            _ball.Position.y + _ballRadius <= paddle.Position.x + (paddle.Width / 2)))
+            (_ball.Position.x + _ballRadius >= paddle.Position.x - (paddle.Width / 2) &&
+            _ball.Position.x + _ballRadius <= paddle.Position.x + (paddle.Width / 2)))
         ) {
             var xDif = _ball.Position.x - paddle.Position.x;
             var xPercentDif = xDif / ((float)paddle.Width / 2);
-            _ballDirection.x = xPercentDif * 3;
+            _ballDirection.x = xPercentDif * 2f;
             if (_ball.Position.y <= _size.y / 2) { _ballDirection.y = 1; }
             else { _ballDirection.y = -1; }
+            _ballSpeed.cur += _ballAcceleration;
+            _ballSpeed.cur = Math.Min(_ballSpeed.cur, _ballSpeed.max);
         }
 
     }
 
+    private void ResetBall() {
+        _ballDiameter = 3;
+        _ball = new Circle((uint)_ballDiameter, new Position(_size.x / 2, _size.y / 2));
+        _ballFloatPos = (_size.x / 2, _size.y / 2);
+        _ballSpeed = (cur: 1.2f, max: 2f, start: 1.2f);
+        _ballAcceleration = 0.1f;
+        var rng = new Random();
+        _ballDirection = (rng.Next(-100, 100) / 100f, (rng.Next(0, 1) * 2) - 1);
+        _ballSpeed.cur = _ballSpeed.start;
+        NormaliseBallDirection();
+    }
+    private void ResetPaddles() {
+        _paddleTop = new Rect(11, 3, new Position(_size.x / 2, _size.y - 10));
+        _paddleBottom = new Rect(11, 3, new Position(_size.x / 2, 10));
+    }
 
 
 }
