@@ -32,7 +32,7 @@ canvas.Draw();
 ### IWidget
 
 - Mainly data to describe the widget
-- Given widgets are data, I've made them structs. They're faster to enumerate over with more cache hits (advantageous in a program that renders many many widgets), and cannot be mutated by elsewhere. This does mean some boilerplate code, but it's minimal.
+- Given widgets are data, I've made them structs. They're faster to enumerate over with more cache hits (advantageous in a program that renders many many widgets), and cannot be mutated by elsewhere. This does mean some boilerplate code, but it's minimal. --> Actually this is a lie since the structs are boxxed when added to the ienumerator
 - Uses the visitor pattern with IWidgetRenderer to ensure, at compile time, when a new widget is added, it can be rendered by any renderer.
 
 ### Compound Widgets
